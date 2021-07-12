@@ -765,6 +765,46 @@ extern "C" {
     QudaBLASDataOrder data_order; /**< Specifies if using Row or Column major */
 
   } QudaBLASParam;
+  
+  /**
+   * Parameters having to do with gen_matrix fields or the
+   * interpretation of these fields by various Dirac operators
+   */
+  typedef struct QudaGenMatrixParam_s {
+
+    QudaFieldLocation location; /**< The location of the gauge field */
+
+    int X[4];             /**< The local space-time dimensions (without checkboarding) */
+
+    QudaGenMatrixFieldOrder gen_marix_order; /**< The ordering on the input gen_matrix field */
+
+    QudaTboundary t_boundary;  /**< The temporal boundary condition that will be used for fermion fields */
+
+    QudaPrecision cpu_prec; /**< The precision used by the caller */
+
+    QudaPrecision cuda_prec; /**< The precision of the cuda gauge field */
+
+    QudaPrecision cuda_prec_sloppy; /**< The precision of the sloppy gen_matrix field */
+
+    QudaPrecision cuda_prec_refinement_sloppy; /**< The precision of the sloppy gen_matrix field for the refinement step in multishift */
+    QudaPrecision cuda_prec_precondition; /**< The precision of the preconditioner gen_matrix field */
+
+    QudaPrecision cuda_prec_eigensolver;         /**< The precision of the eigensolver gen_matrix field */
+
+    int gm_pad;       /**< The pad size that the cudaGaugeField will use (default=0) */
+
+    int overlap; /**< Width of overlapping domains */
+
+    int overwrite_mom; /**< When computing momentum, should we overwrite it or accumulate to to */
+
+    int use_resident_gen_matrix;  /**< Use the resident gauge field as input */
+    int use_resident_gen_matrix_mom;    /**< Use the resident gen_matrix momentum field as input*/
+    int make_resident_gen_matrix; /**< Make the result gen_matrix field resident */
+    int make_resident_gen_matrix_mom;   /**< Make the result gen_matrix momentum field resident */
+    int return_result_gen_matrix; /**< Return the result gen_matrix field */
+    int return_result_gen_matrix_mom;   /**< Return the result gen_matrix momentum field */
+
+  } QudaGenMatrixParam;
 
   /*
    * Interface functions, found in interface_quda.cpp
