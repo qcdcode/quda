@@ -1497,7 +1497,15 @@ extern "C" {
    * @param meas_interval Measure the Q charge and field energy every Nth step
    * @param wflow_type 1x1 Wilson or 2x1 Symanzik flow type
    */
+  void performWFlownStep_param(unsigned int n_steps, double step_size, int meas_interval, QudaWFlowType wflow_type,
+  QudaGaugeObservableParam *param);
+
+  /**
+   * overload of performWFlownStep_param, 
+   * but without passing a pointer to QudaGaugeObservableParam
+   */
   void performWFlownStep(unsigned int n_steps, double step_size, int meas_interval, QudaWFlowType wflow_type);
+
 
   /**
    * @brief Calculates a variety of gauge-field observables.  If a
