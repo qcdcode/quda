@@ -5599,6 +5599,7 @@ void performWFlownStep(unsigned int n_steps, double step_size, int meas_interval
     // creating an empty array of QudaGaugeObservableParam
     QudaGaugeObservableParam* param = new QudaGaugeObservableParam[n_steps+1];
     for (unsigned int i=0;i<n_steps+1; i++){ // initializing for all 'i'
+      param[i] = newQudaGaugeObservableParam();
       param[i].compute_plaquette = QUDA_BOOLEAN_TRUE;
       param[i].compute_qcharge = QUDA_BOOLEAN_TRUE; 
     }
